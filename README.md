@@ -5,10 +5,10 @@
 *lita-image-fetcher* is a [Lita](https://github.com/litaio/lita) handler for the servicing of image queries.  The handler intends to be designed in such a way that extension with new image sources is relatively straightforward.  
 
 Sources intended to be included by default:
-Google CSE
-Bing
-Yahoo
-Pixabay
+* Google CSE
+* Bing
+* Yahoo
+* Pixabay
 
 All of these sources have strengths and weaknesses, and most have rate limitations that spill over into paid models.  Running this handler for free (or on the cheaps) therefore will require some degree of configuration with regard to when each source should be used.  Relevant links to the various payment models of these sources is forthcoming. 
 
