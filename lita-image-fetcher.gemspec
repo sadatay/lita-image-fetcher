@@ -1,12 +1,11 @@
 Gem::Specification.new do |spec|
   spec.name          = "lita-image-fetcher"
   spec.version       = "0.1.0"
-  spec.authors       = ["TODO: Write your name"]
-  spec.email         = ["TODO: Write your email address"]
-  spec.description   = "TODO: Add a description"
-  spec.summary       = "TODO: Add a summary"
-  spec.homepage      = "TODO: Add a homepage"
-  spec.license       = "TODO: Add a license"
+  spec.authors       = ["Joe LaSala"]
+  spec.email         = ["jdlasala@gmail.com"]
+  spec.description   = "Image fetcher for litabot"
+  spec.homepage      = "https://github.com/sadatay/lita-image-fetcher"
+  spec.license       = "MIT"
   spec.metadata      = { "lita_plugin_type" => "handler" }
 
   spec.files         = `git ls-files`.split($/)
