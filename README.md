@@ -5,10 +5,10 @@
 *lita-image-fetcher* is a [Lita](https://github.com/litaio/lita) handler for the servicing of image queries.  The handler intends to be designed in such a way that extension with new image sources is relatively straightforward.  
 
 Sources intended to be included by default:
-* Google CSE
+* Google CSE (implemented)
 * Bing
 * Yahoo
-* Pixabay
+* Pixabay (implemented)
 
 All of these sources have strengths and weaknesses, and most have rate limitations that spill over into paid models.  Running this handler for free (or on the cheaps) therefore will require some degree of configuration with regard to when each source should be used.  Relevant links to the various payment models of these sources is forthcoming. 
 
@@ -22,8 +22,26 @@ gem "lita-image-fetcher"
 
 ## Configuration
 
-None as of yet.
+###Configuring Pixabay
+To use the Pixabay API you must first register an account with Pixabay.  Once registered, you will see your API key displayed when visiting the [Pixabay API documentation](https://pixabay.com/api/docs/). 
+
+Add the key to your Lita config:
+```
+Lita.configure do |config|
+  config.handlers.image_fetcher.pixabay_key = 'ThisIsATotallyRealKey'
+end
+```
+
+###Configuring Google CSE
+Registering a Google CSE can be a confusing process.  I will be posting a more in-depth explanation here at a future date, but for now let's just say "follow the Google documentation".  You will need a CSE ID and an API key.  Add them to your Lita config as follows.
+```
+Lita.configure do |config|
+  config.handlers.image_fetcher.google_cse_id = 'GoogleID'
+  config.handlers.image_fetcher.google_cse_key = 'GoogleKey'
+  config.handlers.image_fetcher.google_cse_safe_search = :off
+end
+```
 
 ## Usage
 
-None as of yet.
+Not recommended as of yet.

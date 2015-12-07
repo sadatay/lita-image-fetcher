@@ -2,6 +2,7 @@ module Lita
   module Handlers
     class Pixabay < Handler
       SOURCE_URL = "https://pixabay.com/api/"
+      attr_reader :api_key
 
       def initialize(api_key:)
         @api_key = api_key
@@ -12,7 +13,7 @@ module Lita
 
         http_response = http.get(
           SOURCE_URL,
-          key: @api_key,
+          key: api_key,
           q: query,
           per_page: 10
         )
@@ -26,7 +27,7 @@ module Lita
           if choice
             return choice["webformatURL"]
           else
-            return %{No images found for "#{query}".}
+            return nil
           end
         else
           Lita.logger.warn(
