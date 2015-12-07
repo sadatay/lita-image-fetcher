@@ -1,15 +1,17 @@
 module Lita
   module Handlers
     class ImageFetcher < Handler
-      config :pixabay_key, types: [String]
-      config :google_cse_key, types: [String]
-      config :google_cse_id, types: [String]
+      config :pixabay_key, types: [String], default: "1733162-8502bd72ccb45f2043fbe2208"
+      config :google_cse_key, types: [String], default: "AIzaSyDCJf_JUCIdnT_4d-bbBEJhoske5wB_ZYk"
+      config :google_cse_id, types: [String], default: "005286386203807831899:6uwitwgujla"
       config :google_cse_safe_search, types: [Symbol], default: :high
 
       route(/(?:image|img)(?:\s+me)? (.+)/i, :fetch, command: true, help: {
         "image QUERY" => "Displays an image matching the query."
       })
 
+
+      # TODO: gracefully handle sources that aren't configured
       def sources
         {
           pixabay: Handlers::Pixabay.new(api_key: config.pixabay_key),

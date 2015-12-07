@@ -34,11 +34,8 @@ module Lita
           else
             return nil
           end
-        else
-          Lita.logger.warn(
-            "Couldn't get image from Google CSE."
-          )
         end
+        nil
       end
     end
   end

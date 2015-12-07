@@ -29,11 +29,8 @@ module Lita
           else
             return nil
           end
-        else
-          Lita.logger.warn(
-            "Couldn't get image from Pixabay."
-          )
         end
+        nil
       end
     end
   end
