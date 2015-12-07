@@ -5,6 +5,7 @@ module Lita
       config :google_cse_key, types: [String]
       config :google_cse_id, types: [String]
       config :google_cse_safe_search, types: [Symbol], default: :high
+      config :bing_key, types: [String]
 
       route(/(?:image|img)(?:\s+me)? (.+)/i, :fetch, command: true, help: {
         "image QUERY" => "Displays an image matching the query."
@@ -18,7 +19,8 @@ module Lita
             cse_id: config.google_cse_id,
             cse_key: config.google_cse_key,
             cse_safe_search: config.google_cse_safe_search
-          )
+          ),
+          bing: Handlers::Bing.new(bing_key: config.bing_key)
         }
       end
 

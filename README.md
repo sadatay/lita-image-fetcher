@@ -42,6 +42,14 @@ Lita.configure do |config|
 end
 ```
 
+###Configuring Bing
+You can sign up for Bing's free or paid services on the [Azure Marketplace](https://datamarket.azure.com/dataset/5BA839F1-12CE-4CCE-BF57-A49D98D29A44).  Following their instructions will yield an API key that you can then add to your Lita config as follows:
+```
+Lita.configure do |config|
+  config.handlers.image_fetcher.bing_key = 'BingKey'
+end
+```
+
 ## Usage
 
 Not recommended as of yet.
