@@ -11,17 +11,16 @@ module Lita
         "image QUERY" => "Displays an image matching the query."
       })
 
-      # TODO: gracefully handle sources that aren't configured
       def sources
-        {
-          pixabay: Handlers::Pixabay.new(api_key: config.pixabay_key),
-          google_cse: Handlers::GoogleCSE.new(
+        @sources ||= {}
+        @sources[:pixabay] ||= Handlers::Pixabay.new(api_key: config.pixabay_key) if config.pixabay_key.present?
+        @sources[:google_cse] ||= Handlers::GoogleCSE.new(
             cse_id: config.google_cse_id,
             cse_key: config.google_cse_key,
             cse_safe_search: config.google_cse_safe_search
-          ),
-          bing: Handlers::Bing.new(bing_key: config.bing_key)
-        }
+          ) if config.google_cse_id.present? && config.google_cse_safe_search.present? && config.google_cse_key.present?
+        @sources[:bing] ||= Handlers::Bing.new(bing_key: config.bing_key) if config.bing_key.present?
+        @sources
       end
 
       def fetch(response)
