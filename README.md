@@ -1,18 +1,16 @@
 # lita-image-fetcher
 
-**This project is very much work in progress.  I am setting this up as a space where progress can be viewed and collaboration can be facilitated.**
-
-**lita-image-fetcher** is a [Lita](https://github.com/litaio/lita) handler for the servicing of image queries.  The handler intends to be designed in such a way that extension with new image sources is relatively straightforward.  
+**lita-image-fetcher** is a [Lita](https://github.com/litaio/lita) handler for the servicing of image queries.  The handler intends to be designed in such a way that extension with new image sources is relatively straightforward.  If you have an image source you want to add that is not already implemented, feel free to make a pull request!  I'll gladly integrate any valid image source into this plugin.  
 
 **Free services:**
-* Pixabay (implemented)
+* Pixabay
 
 **Rate limited services:**
-* Google CSE (implemented)
-* Bing (implemented)
+* Google CSE (100 images per day)
+* Bing (5000 images per month)
 
 **Paid services:**
-* Yahoo
+* Yahoo (not yet implemented)
 
 **Current maximum free images per day:** 261+
 
@@ -42,7 +40,7 @@ To use the Pixabay API you must first register an account with Pixabay.  Once re
 Add the key to your Lita config:
 ``` ruby
 Lita.configure do |config|
-  config.handlers.image_fetcher.pixabay_key = 'ThisIsATotallyRealKey'
+  config.handlers.image_fetcher.pixabay_key = 'PixabayKey'
 end
 ```
 
@@ -67,6 +65,16 @@ Lita.configure do |config|
   config.handlers.image_fetcher.bing_key = 'BingKey'
 end
 ```
+
+### Configuring source level
+You can specify how deep you want the image searching to go.  `lita-image-fetcher` will only use sources that are configured, and it will try them in the order Free -> Limited -> Paid.  However if for some reason your chat is consuming too many paid images, or is consistently going over the limits for a rate-limited source and you want to temporarily disable the source without removing the configuration, you can specify the level as follows:
+``` ruby
+Lita.configure do |config|
+  config.handlers.image_fetcher.source_level = :free
+end
+```
+
+Possible values are `:free`, `:limited` and `:paid`.  The default is `:limited`.
 
 ## Usage
 
